@@ -21,7 +21,8 @@ const initialState = {
 };
 
 const avatar = require("../images/avatar.png");
-export default function RegistrationScreen() {
+
+export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
@@ -113,7 +114,7 @@ export default function RegistrationScreen() {
             <MaterialCommunityIcons
               name={rightIcon}
               size={22}
-              color="#232323"
+              color="#BDBDBD"
             />
           </Pressable>
         </View>

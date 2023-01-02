@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createStackNavigator } from "@react-navigation/stack";
 import { useCallback } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -19,9 +21,12 @@ import {
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import RegistrationScreen from "./Screens/RegistrationScreen";
-import LoginScreen from "./Screens/LoginScreen";
-// import MainStack from "./navigate";
+import Navigate from "./navigate";
+
+// import RegistrationScreen from "./Screens/RegistrationScreen";
+// import LoginScreen from "./Screens/LoginScreen";
+
+// const AuthStack = createStackNavigator();
 
 const image = require("./images/Photo-BG.jpg");
 
@@ -48,8 +53,7 @@ export default function App() {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            <RegistrationScreen />
-            {/* <LoginScreen /> */}
+            <Navigate />
           </KeyboardAvoidingView>
         </ImageBackground>
 
