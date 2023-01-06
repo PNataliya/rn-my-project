@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
-  //   TextInput,
+  ImageBackground,
   TouchableOpacity,
   Platform,
   Keyboard,
@@ -18,7 +18,9 @@ const initialState = {
   password: "",
 };
 
-export default function LoginScreen() {
+const image = require("../images/Photo-BG.jpg");
+
+export default function LoginScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
@@ -33,78 +35,93 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.formContainer}>
-      <View
-        style={{
-          ...styles.form,
-          marginBottom: isShowKeyboard ? -50 : 78,
-        }}
-      >
-        <View>
-          <Text style={styles.formTitle}>Войти</Text>
-        </View>
+    <ImageBackground style={styles.image} source={image}>
+      <View style={styles.formContainer}>
+        <View
+          style={{
+            ...styles.form,
+            marginBottom: isShowKeyboard ? -30 : 140,
+          }}
+        >
+          <View>
+            <Text style={styles.formTitle}>Войти</Text>
+          </View>
 
-        <View>
-          <TextInput
-            style={styles.input}
-            textAlign={"start"}
-            mode="outlined"
-            outlineColor="#E8E8E8"
-            activeOutlineColor={"#FF6C00"}
-            onFocus={() => setIsShowKeyboard(true)}
-            value={state.email}
-            placeholder="Адрес электронной почты"
-            placeholderTextColor="#BDBDBD"
-            onChangeText={(value) =>
-              setState((prevState) => ({ ...prevState, email: value }))
-            }
-          />
-        </View>
-        <View style={{ marginTop: 16 }}>
-          <TextInput
-            style={styles.input}
-            keyboardType="password"
-            textAlign={"start"}
-            mode="outlined"
-            outlineColor="#E8E8E8"
-            activeOutlineColor={"#FF6C00"}
-            secureTextEntry={passwordVisibility}
-            onFocus={() => setIsShowKeyboard(true)}
-            value={state.password}
-            placeholder="Пароль"
-            placeholderTextColor="#BDBDBD"
-            onChangeText={(value) =>
-              setState((prevState) => ({
-                ...prevState,
-                password: value,
-              }))
-            }
-          />
-          <Pressable
-            style={styles.inputIcon}
-            onPress={handlePasswordVisibility}
-          >
-            <MaterialCommunityIcons
-              name={rightIcon}
-              size={22}
-              color="#232323"
+          <View>
+            <TextInput
+              style={styles.input}
+              textAlign={"start"}
+              mode="outlined"
+              outlineColor="#E8E8E8"
+              activeOutlineColor={"#FF6C00"}
+              onFocus={() => setIsShowKeyboard(true)}
+              value={state.email}
+              placeholder="Адрес электронной почты"
+              placeholderTextColor="#BDBDBD"
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, email: value }))
+              }
             />
-          </Pressable>
-        </View>
-        <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-          <Text style={styles.btnTitle} onPress={keyboardHide}>
-            Войти
-          </Text>
-        </TouchableOpacity>
-        <View style={styles.boxQuestion}>
-          <Text style={styles.paragraph}>Нет аккаунта? Зарегистрироваться</Text>
+          </View>
+          <View style={{ marginTop: 16 }}>
+            <TextInput
+              style={styles.input}
+              keyboardType="password"
+              textAlign={"start"}
+              mode="outlined"
+              outlineColor="#E8E8E8"
+              activeOutlineColor={"#FF6C00"}
+              secureTextEntry={passwordVisibility}
+              onFocus={() => setIsShowKeyboard(true)}
+              value={state.password}
+              placeholder="Пароль"
+              placeholderTextColor="#BDBDBD"
+              onChangeText={(value) =>
+                setState((prevState) => ({
+                  ...prevState,
+                  password: value,
+                }))
+              }
+            />
+            <Pressable
+              style={styles.inputIcon}
+              onPress={handlePasswordVisibility}
+            >
+              <MaterialCommunityIcons
+                name={rightIcon}
+                size={22}
+                color="#232323"
+              />
+            </Pressable>
+          </View>
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+            <Text style={styles.btnTitle} onPress={keyboardHide}>
+              Войти
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.boxQuestion}>
+            <Text style={styles.paragraph}>Нет аккаунта?</Text>
+            <Text
+              style={styles.paragraphLink}
+              onPress={() => navigation.navigate("Registration")}
+            >
+              Зарегистрироваться
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+    justifyContent: "flex-end",
+  },
   formContainer: {
     width: "100%",
     // height: 549,
@@ -113,7 +130,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 25,
   },
   formTitle: {
-    marginTop: 92,
+    marginTop: 32,
     marginBottom: 33,
     fontFamily: "Roboto-Regular",
     fontWeight: 500,
@@ -171,11 +188,14 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
   },
   boxQuestion: {
-    // marginBottom: 78,
+    flexDirection: "row",
+    justifyContent: "center",
   },
   paragraph: {
     fontSize: 16,
-
-    textAlign: "center",
+  },
+  paragraphLink: {
+    fontSize: 16,
+    marginLeft: 5,
   },
 });
