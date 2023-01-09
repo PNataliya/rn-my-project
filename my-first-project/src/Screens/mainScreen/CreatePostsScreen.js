@@ -1,36 +1,23 @@
 import React, { useState } from "react";
+import { COLORS, IMGS } from "../../assets/constants";
 import { TextInput } from "react-native-paper";
 import {
   StyleSheet,
   Text,
   View,
   Image,
-  //   ImageBackground,
   TouchableOpacity,
-  //   Platform,
   Keyboard,
-  //   Pressable,
-  //   StatusBar,
 } from "react-native";
 
 const initialState = {
   name: "",
   place: "",
 };
-// const DefaultHeader: NativeStackNavigationOptions = {
-//   headerBackImageSource:
-//     Platform.OS === "android"
-//       ? require("../../Resources/Images/Icons/back.png")
-//       : { uri: "back", width: 24, height: 24 }, // pull from assets, to avoid icon changing from default to custom
-// };
-
-const addPhotoIcon = require("../../images/addPhoto.png");
-const mapPin = require("../../images/map-pin.png");
 
 export default function CreatePostsScreen() {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
-  const [place, setPlace] = useState("");
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -41,10 +28,16 @@ export default function CreatePostsScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={{ width: "100%", height: "100%", backgroundColor: "#fff" }}>
+      <View
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: COLORS.bgColor,
+        }}
+      >
         <View style={styles.imageContainer}>
           <View style={{ alignItems: "center" }}>
-            <Image source={addPhotoIcon} />
+            <Image source={IMGS.addPhotoIcon} />
           </View>
         </View>
         <View style={{ marginLeft: 16, marginTop: 8 }}>
@@ -90,7 +83,7 @@ export default function CreatePostsScreen() {
                   setState((prevState) => ({ ...prevState, place: value }))
                 }
               />
-              <Image style={{ top: -38, left: 30 }} source={mapPin} />
+              <Image style={{ top: -38, left: 30 }} source={IMGS.mapPinIcon} />
             </View>
             <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
               <Text style={styles.btnTitle} onPress={keyboardHide}>
@@ -107,7 +100,7 @@ export default function CreatePostsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.bgColor,
   },
   imageContainer: {
     marginTop: 32,
@@ -115,9 +108,9 @@ const styles = StyleSheet.create({
     // flexDirection: "row",
     // width: "100%",
     height: 240,
-    backgroundColor: "#F6F6F6",
+    backgroundColor: COLORS.bgColorInput,
     borderBottomWidth: 1,
-    borderBottomColor: "#E8E8E8",
+    borderBottomColor: COLORS.borderColor,
     borderBottomStyle: "solid",
     borderRadius: 8,
     justifyContent: "center",
@@ -128,12 +121,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontWeight: 400,
 
-    color: "#BDBDBD",
+    color: COLORS.colorFontSecondary,
   },
   formContainer: {
     width: "100%",
     // height: 549,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.bgColor,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
@@ -144,7 +137,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 8,
     fontSize: 16,
-    color: "#BDBDBD",
+    color: COLORS.colorFontSecondary,
   },
   inputMap: {
     marginHorizontal: 16,
@@ -153,7 +146,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 8,
     fontSize: 16,
-    color: "#BDBDBD",
+    color: COLORS.colorFontSecondary,
   },
   btn: {
     marginHorizontal: 16,
@@ -167,14 +160,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...Platform.select({
       ios: {
-        // backgroundColor: "#FF6C00",
-        // borderColor: "#FF6C00",
-        backgroundColor: "#F6F6F6",
-        borderColor: "#F6F6F6",
+        backgroundColor: COLORS.buttonBgColorPrimary,
+        borderColor: COLORS.buttonBgColorPrimary,
       },
       android: {
-        backgroundColor: "#FF6C00",
-        borderColor: "#FF6C00",
+        backgroundColor: COLORS.buttonBgColorPrimary,
+        borderColor: COLORS.buttonBgColorPrimary,
       },
     }),
   },
@@ -183,7 +174,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
 
     fontSize: 16,
-    color: "#BDBDBD",
+    color: COLORS.colorFontSecondary,
     fontFamily: "Roboto-Regular",
   },
 });

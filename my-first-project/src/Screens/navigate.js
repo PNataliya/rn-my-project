@@ -83,6 +83,6 @@ const useRoute = (isAuth) => {
 };
 
 export default function Navigate() {
-  const routing = useRoute({});
+  const routing = useRoute(null);
   return <NavigationContainer>{routing}</NavigationContainer>;
 }

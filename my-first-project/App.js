@@ -19,14 +19,14 @@ import {
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
-import Navigate from "./Screens/navigate";
-import MapScreen from "./Screens/MapScreen";
-const image = require("./images/Photo-BG.jpg");
+import Navigate from "./src/Screens/navigate";
+import MapScreen from "./src/Screens/MapScreen";
+import CommentsScreen from "./src/Screens/CommentsScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Bold": require("./assets/fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("./src/assets/fonts/Roboto-Regular.ttf"),
+    "Roboto-Bold": require("./src/assets/fonts/Roboto-Bold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -46,8 +46,9 @@ export default function App() {
           style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          <Navigate />
+          {/* <Navigate /> */}
           {/* <MapScreen /> */}
+          <CommentsScreen />
         </KeyboardAvoidingView>
 
         <StatusBar style="auto" />

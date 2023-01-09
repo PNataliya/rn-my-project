@@ -1,25 +1,9 @@
 import React, { useState } from "react";
+import { COLORS, IMGS } from "../../assets/constants";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { StyleSheet, Text, View, Image, StatusBar } from "react-native";
 
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList,
-  ImageBackground,
-  TouchableOpacity,
-  Platform,
-  Keyboard,
-  Pressable,
-  StatusBar,
-} from "react-native";
-
-const avatar = require("../../images/avatar.png");
-const forest = require("../../images/posts/1forest.png");
-const sunset = require("../../images/posts/2sunset.png");
-const oldHouse = require("../../images/posts/3old_house.png");
+// const avatar = require("../../images/avatar.png");
 
 export default function PostsScreen() {
   return (
@@ -27,7 +11,7 @@ export default function PostsScreen() {
       <View style={styles.userContainer}>
         <Image
           style={{ paddingRight: 8, width: 60, height: 60, borderRadius: 16 }}
-          source={avatar}
+          source={IMGS.avatar}
         />
         <View style={styles.postContainer}>
           <Text style={styles.name}>Natali Romanova</Text>
@@ -60,7 +44,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Bold",
     fontWeight: 700,
     fontSize: 13,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
     letterSpacing: 0.01,
   },
   email: {
@@ -69,6 +53,6 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 11,
     letterSpacing: 0.01,
-    color: "rgba(33, 33, 33, 0.8)",
+    color: COLORS.colorFontPostUserEmail,
   },
 });

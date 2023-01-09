@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { COLORS } from "../assets/constants";
 import { TextInput } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTogglePasswordVisibility } from "../hooks/useTogglePasswordVisibility";
@@ -90,7 +91,7 @@ export default function LoginScreen({ navigation }) {
               <MaterialCommunityIcons
                 name={rightIcon}
                 size={22}
-                color="#232323"
+                color="#BDBDBD"
               />
             </Pressable>
           </View>
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
   formContainer: {
     width: "100%",
     // height: 549,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.bgColor,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
@@ -153,11 +154,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     // borderWidth: 1,
     height: 50,
-    backgroundColor: "#F6F6F6",
-    borderColor: "#E8E8E8",
+    backgroundColor: COLORS.bgColorInput,
+    borderColor: COLORS.borderColor,
     borderRadius: 8,
     fontSize: 18,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
   },
   inputIcon: {
     top: -38,
@@ -174,12 +175,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...Platform.select({
       ios: {
-        backgroundColor: "#FF6C00",
-        borderColor: "#FF6C00",
+        backgroundColor: COLORS.buttonBgColorActive,
+        borderColor: COLORS.buttonBgColorActive,
       },
       android: {
-        backgroundColor: "#FF6C00",
-        borderColor: "#FF6C00",
+        backgroundColor: COLORS.buttonBgColorActive,
+        borderColor: COLORS.buttonBgColorActive,
       },
     }),
   },
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
 
     fontSize: 16,
-    color: "#fff",
+    color: COLORS.bgColor,
     fontFamily: "Roboto-Regular",
   },
   boxQuestion: {

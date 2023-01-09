@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { COLORS, IMGS } from "../../assets/constants";
 import {
   StyleSheet,
   Text,
@@ -11,30 +12,18 @@ import {
   Button,
 } from "react-native";
 
-const image = require("../../images/Photo-BG.jpg");
-const avatar = require("../../images/avatar.png");
-
-const forest = require("../../images/posts/1forest.png");
-const sunset = require("../../images/posts/2sunset.png");
-const oldHouse = require("../../images/posts/3old_house.png");
-const deletePhoto = require("../../assets/images_navigation/deletePhoto.png");
-const logout = require("../../assets/images_navigation/logout.png");
-const comment = require("../../assets/images_navigation/comment.png");
-const like = require("../../assets/images_navigation/like.png");
-const mapPin = require("../../images/map-pin.png");
-
 export default function ProfileScreen({ navigation }) {
   return (
-    <ImageBackground style={styles.image} source={image}>
+    <ImageBackground style={styles.image} source={IMGS.bgImg}>
       <ScrollView>
         <View style={styles.container}>
           <View style={styles.imageContainer}>
-            <Image source={avatar} />
-
-            <TouchableOpacity>
-              <Image style={styles.logout} size={24} source={logout} />
-            </TouchableOpacity>
+            <Image source={IMGS.avatar} />
           </View>
+          <Image style={styles.deletePhoto} source={IMGS.deletePhotoIcon} />
+          <TouchableOpacity>
+            <Image style={styles.logout} size={24} source={IMGS.logoutIcon} />
+          </TouchableOpacity>
 
           <View>
             <Text style={styles.formTitle}>Natali Romanova</Text>
@@ -45,41 +34,65 @@ export default function ProfileScreen({ navigation }) {
             >
               {/* 1 ====== */}
               <View style={styles.postWrapper}>
-                <Image source={forest} />
+                <Image source={IMGS.forestPostImg} />
                 <Text style={styles.postName}>Лес</Text>
               </View>
               <View style={styles.descriptiontWrapper}>
-                <Image style={{ marginRight: 9 }} size={18} source={comment} />
+                <Image
+                  style={{ marginRight: 9 }}
+                  size={18}
+                  source={IMGS.commentIcon}
+                />
                 <Text style={styles.textComment}>8</Text>
-                <Image style={{ marginRight: 6 }} size={24} source={like} />
+                <Image
+                  style={{ marginRight: 6 }}
+                  size={24}
+                  source={IMGS.likeIcon}
+                />
                 <Text style={styles.textLike}>153</Text>
-                <Image source={mapPin} />
+                <Image source={IMGS.mapPinIcon} />
                 <Text style={styles.location}>Ukraine</Text>
               </View>
               {/* 2 ==== */}
               <View style={styles.postWrapper}>
-                <Image source={sunset} />
-                <Text style={styles.postName}>Лес</Text>
+                <Image source={IMGS.sunsetPostImg} />
+                <Text style={styles.postName}>Закат на Черном море</Text>
               </View>
               <View style={styles.descriptiontWrapper}>
-                <Image style={{ marginRight: 9 }} size={18} source={comment} />
+                <Image
+                  style={{ marginRight: 9 }}
+                  size={18}
+                  source={IMGS.commentIcon}
+                />
                 <Text style={styles.textComment}>3</Text>
-                <Image style={{ marginRight: 6 }} size={24} source={like} />
+                <Image
+                  style={{ marginRight: 6 }}
+                  size={24}
+                  source={IMGS.likeIcon}
+                />
                 <Text style={styles.textLike}>200</Text>
-                <Image source={mapPin} />
+                <Image source={IMGS.mapPinIcon} />
                 <Text style={styles.location}>Ukraine</Text>
               </View>
               {/* 3 ===== */}
               <View style={styles.postWrapper}>
-                <Image source={oldHouse} />
-                <Text style={styles.postName}>Лес</Text>
+                <Image source={IMGS.oldHousePostImg} />
+                <Text style={styles.postName}>Старый домик в Венеции</Text>
               </View>
               <View style={styles.descriptiontWrapper}>
-                <Image style={{ marginRight: 9 }} size={18} source={comment} />
+                <Image
+                  style={{ marginRight: 9 }}
+                  size={18}
+                  source={IMGS.commentIcon}
+                />
                 <Text style={styles.textComment}>50</Text>
-                <Image style={{ marginRight: 6 }} size={24} source={like} />
+                <Image
+                  style={{ marginRight: 6 }}
+                  size={24}
+                  source={IMGS.likeIcon}
+                />
                 <Text style={styles.textLike}>200</Text>
-                <Image source={mapPin} />
+                <Image source={IMGS.mapPinIcon} />
                 <Text style={styles.location}>Ukraine</Text>
               </View>
               {/* ===== */}
@@ -103,22 +116,26 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 147,
     paddingHorizontal: 16,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.bgColor,
     // justifyContent: "center",
     alignItems: "center",
   },
   imageContainer: {
     position: "absolute",
-    backgroundColor: "#F6F6F6",
+    backgroundColor: COLORS.bgColorInput,
     width: 120,
     height: 120,
     borderRadius: 16,
     top: -65,
     left: 135,
   },
+  deletePhoto: {
+    top: 10,
+    left: 60,
+  },
   logout: {
-    top: -30,
-    left: 200,
+    top: -20,
+    left: 160,
   },
   formTitle: {
     marginTop: 92,
@@ -135,7 +152,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Bold",
     fontWeight: 500,
     fontSize: 16,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
     letterSpacing: 0.01,
   },
   descriptiontWrapper: {
@@ -148,7 +165,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontWeight: 400,
     fontSize: 16,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
     letterSpacing: 0.01,
   },
   textLike: {
@@ -156,7 +173,7 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontWeight: 400,
     fontSize: 16,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
     letterSpacing: 0.01,
   },
   location: {
@@ -164,43 +181,8 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontWeight: 400,
     fontSize: 16,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
     letterSpacing: 0.01,
     textDecorationLine: "underline",
   },
 });
-
-//  {
-/* <TouchableOpacity onPress={() => navigation.navigate("PostsScreen")}></TouchableOpacity> */
-//  }
-//  {
-/* <View style={styles.postWrapper}>
-              <Image source={forest} />
-              <Text style={styles.postName}>Лес</Text>
-        //     </View> */
-//  }
-//  {
-/* <View style={styles.descriptiontWrapper}>
-              <Image style={{ marginRight: 9 }} size={18} source={comment} />
-              <Text style={styles.textComment}>8</Text>
-              <Image style={{ marginRight: 6 }} size={24} source={like} />
-              <Text style={styles.textLike}>153</Text>
-              <Image source={mapPin} />
-              <Text style={styles.location}>Ukraine</Text>
-            </View> */
-//  }
-
-//  {
-/* <FlatList
-          data={posts}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("PostsScreen")}
-            >
-              <Text>{item.photo}</Text>
-              <Text>{item.name}</Text>
-              <Text>{item.place}</Text>
-            </TouchableOpacity>
-          )}
-        /> */
-//  }

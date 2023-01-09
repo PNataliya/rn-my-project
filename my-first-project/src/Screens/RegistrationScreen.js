@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { COLORS, IMGS } from "../assets/constants";
 import { TextInput } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTogglePasswordVisibility } from "../hooks/useTogglePasswordVisibility";
@@ -20,10 +21,6 @@ const initialState = {
   password: "",
 };
 
-const image = require("../images/Photo-BG.jpg");
-
-const avatar = require("../images/avatar.png");
-
 export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
@@ -43,7 +40,7 @@ export default function RegistrationScreen({ navigation }) {
   };
 
   return (
-    <ImageBackground style={styles.image} source={image}>
+    <ImageBackground style={styles.image} source={IMGS.bgImg}>
       <View style={styles.formContainer}>
         <View
           style={{
@@ -52,7 +49,7 @@ export default function RegistrationScreen({ navigation }) {
           }}
         >
           <View style={styles.imageContainer}>
-            <Image source={avatar} />
+            <Image source={IMGS.avatar} />
           </View>
           <View>
             <Text style={styles.formTitle}>Регистрация</Text>
@@ -153,13 +150,13 @@ const styles = StyleSheet.create({
   formContainer: {
     position: "relative",
     width: "100%",
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.bgColor,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
   imageContainer: {
     position: "absolute",
-    backgroundColor: "#F6F6F6",
+    backgroundColor: COLORS.bgColor,
     width: 120,
     height: 120,
     borderRadius: 16,
@@ -186,11 +183,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     // borderWidth: 1,
     height: 50,
-    backgroundColor: "#F6F6F6",
-    borderColor: "#E8E8E8",
+    backgroundColor: COLORS.bgColorInput,
+    borderColor: COLORS.borderColor,
     borderRadius: 8,
     fontSize: 18,
-    color: "#212121",
+    color: COLORS.colorFontPrimary,
   },
   inputIcon: {
     top: -38,
@@ -207,12 +204,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...Platform.select({
       ios: {
-        backgroundColor: "#FF6C00",
-        borderColor: "#FF6C00",
+        backgroundColor: COLORS.borderColorActive,
+        borderColor: COLORS.borderColorActive,
       },
       android: {
-        backgroundColor: "#FF6C00",
-        borderColor: "#FF6C00",
+        backgroundColor: COLORS.borderColorActive,
+        borderColor: COLORS.borderColorActive,
       },
     }),
   },
@@ -221,7 +218,7 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
 
     fontSize: 16,
-    color: "#fff",
+    color: COLORS.bgColor,
     fontFamily: "Roboto-Regular",
   },
   boxQuestion: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { COLORS, IMGS } from "../assets/constants";
 import {
   StyleSheet,
   Text,
@@ -11,11 +11,6 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-
-const sunset = require("../images/posts/2sunset.png");
-const commentIcon = require("../images/comments/1.png");
-const userIcon = require("../images/comments/user.png");
-const sendComment = require("../assets/images_navigation/Send.png");
 
 const initialState = {
   comment: "",
@@ -35,7 +30,10 @@ export default function CommentsScreen({ navigation }) {
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.imageContainer}>
-          <Image style={{ width: "100%", borderRadius: 8 }} source={sunset} />
+          <Image
+            style={{ width: "100%", borderRadius: 8 }}
+            source={IMGS.sunsetPostImg}
+          />
         </View>
         <View style={styles.formContainer}>
           <View
@@ -45,7 +43,7 @@ export default function CommentsScreen({ navigation }) {
             }}
           >
             <View style={styles.commentWrapper}>
-              <Image source={commentIcon} size={28} />
+              <Image source={IMGS.commentAvatar} size={28} />
               <View style={styles.textWrapper}>
                 <Text style={styles.text}>
                   Really love your most recent photo. I’ve been trying to
@@ -65,10 +63,10 @@ export default function CommentsScreen({ navigation }) {
                   09 июня, 2020 | 09:14
                 </Text>
               </View>
-              <Image source={userIcon} />
+              <Image source={IMGS.commentUserAvatar} />
             </View>
             <View style={styles.commentWrapper}>
-              <Image source={commentIcon} size={28} />
+              <Image source={IMGS.commentAvatar} size={28} />
               <View style={styles.textAnswerWrapper}>
                 <Text style={styles.text}>
                   Thank you! That was very helpful!
@@ -101,7 +99,7 @@ export default function CommentsScreen({ navigation }) {
               >
                 <Image
                   style={{ top: -60, left: 314 }}
-                  source={sendComment}
+                  source={IMGS.sendCommentIcon}
                   size={22}
                   color="#232323"
                 />
