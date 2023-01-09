@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import React, { useState } from "react";
 import { TextInput } from "react-native-paper";
 import {
@@ -41,7 +40,7 @@ export default function CreatePostsScreen() {
   };
 
   return (
-    <View style={styled.container}>
+    <View style={styles.container}>
       <View style={{ width: "100%", height: "100%", backgroundColor: "#fff" }}>
         <View style={styles.imageContainer}>
           <View style={{ alignItems: "center" }}>

@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createStackNavigator } from "@react-navigation/stack";
 import { useCallback } from "react";
-// import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   SafeAreaView,
@@ -23,7 +20,7 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import Navigate from "./Screens/navigate";
-
+import MapScreen from "./Screens/MapScreen";
 const image = require("./images/Photo-BG.jpg");
 
 export default function App() {
@@ -50,9 +47,10 @@ export default function App() {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <Navigate />
+          {/* <MapScreen /> */}
         </KeyboardAvoidingView>
 
-        {/* <StatusBar style="auto" /> */}
+        <StatusBar style="auto" />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

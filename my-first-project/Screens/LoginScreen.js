@@ -94,7 +94,11 @@ export default function LoginScreen({ navigation }) {
               />
             </Pressable>
           </View>
-          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.btn}
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("Home")}
+          >
             <Text style={styles.btnTitle} onPress={keyboardHide}>
               Войти
             </Text>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -7,52 +7,53 @@ import {
   Text,
   View,
   Image,
-  //   ImageBackground,
+  FlatList,
+  ImageBackground,
   TouchableOpacity,
   Platform,
   Keyboard,
   Pressable,
   StatusBar,
 } from "react-native";
-import styled from "@emotion/styled";
 
 const avatar = require("../../images/avatar.png");
+const forest = require("../../images/posts/1forest.png");
+const sunset = require("../../images/posts/2sunset.png");
+const oldHouse = require("../../images/posts/3old_house.png");
 
 export default function PostsScreen() {
   return (
-    <View>
-      <View style={styles.imageContainer}>
+    <View style={styles.container}>
+      <View style={styles.userContainer}>
         <Image
-          style={
-            (styled.image,
-            { paddingRight: 8, width: 60, height: 60, borderRadius: 16 })
-          }
+          style={{ paddingRight: 8, width: 60, height: 60, borderRadius: 16 }}
           source={avatar}
         />
-
-        <View style={styled.textContainer}>
+        <View style={styles.postContainer}>
           <Text style={styles.name}>Natali Romanova</Text>
           <Text style={styles.email}>email@example.com</Text>
         </View>
       </View>
+
       <StatusBar theme="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  imageContainer: {
-    flexDirection: "row",
-    // justifyContent: "center",
+  container: {
+    justifyContent: "center",
     alignContent: "center",
     paddingTop: 32,
     paddingLeft: 16,
   },
-  textContainer: {
-    // flex: 1,
-    // flexDirection: "column",
-    // alignContent: "center",
-    // justifyContent: "center",
+  userContainer: {
+    flexDirection: "row",
+  },
+  postContainer: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
   },
   name: {
     paddingLeft: 8,
