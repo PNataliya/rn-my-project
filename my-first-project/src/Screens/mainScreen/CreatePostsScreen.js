@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import * as Location from "expo-location";
+import { Camera } from "expo-camera";
 import { COLORS, IMGS } from "../../assets/constants";
 import { TextInput } from "react-native-paper";
 import {
@@ -15,9 +17,24 @@ const initialState = {
   place: "",
 };
 
-export default function CreatePostsScreen() {
+export default function CreatePostsScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+  const [camera, setCamera] = useState(null);
+  const [photo, setPhoto] = useState(null);
+
+  const takePhoto = async () => {
+    const photo = await camera.takePictureAsync();
+    const location = await Location.getCurrentPositionAsync();
+    console.log(`location`, location);
+    setPhoto(photo.uri);
+    console.log(`camera`, photo.uri);
+  };
+
+  const sendPhoto = async () => {
+    console.log(`navigation`, navigation);
+    navigation.navigate("PostsScreen", { photo });
+  };
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -35,11 +52,20 @@ export default function CreatePostsScreen() {
           backgroundColor: COLORS.bgColor,
         }}
       >
-        <View style={styles.imageContainer}>
-          <View style={{ alignItems: "center" }}>
+        <Camera style={styles.camera} ref={setCamera}>
+          {photo && (
+            <View style={styles.takePhotoContainer}>
+              <Image
+                source={{ uri: photo }}
+                style={{ height: 240, width: 200 }}
+              />
+            </View>
+          )}
+
+          <TouchableOpacity onPress={takePhoto}>
             <Image source={IMGS.addPhotoIcon} />
-          </View>
-        </View>
+          </TouchableOpacity>
+        </Camera>
         <View style={{ marginLeft: 16, marginTop: 8 }}>
           <Text style={styles.title}>Загрузите фото</Text>
         </View>
@@ -47,7 +73,7 @@ export default function CreatePostsScreen() {
           <View
             style={{
               ...styles.form,
-              marginBottom: isShowKeyboard ? 100 : 140,
+              marginBottom: isShowKeyboard ? 200 : 140,
             }}
           >
             <View style={{ marginTop: 40 }}>
@@ -86,7 +112,7 @@ export default function CreatePostsScreen() {
               <Image style={{ top: -38, left: 30 }} source={IMGS.mapPinIcon} />
             </View>
             <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
-              <Text style={styles.btnTitle} onPress={keyboardHide}>
+              <Text style={styles.btnTitle} onPress={sendPhoto}>
                 Опубликовать
               </Text>
             </TouchableOpacity>
@@ -102,7 +128,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bgColor,
   },
-  imageContainer: {
+  camera: {
     marginTop: 32,
     marginHorizontal: 16,
     // flexDirection: "row",
@@ -113,7 +139,15 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.borderColor,
     borderBottomStyle: "solid",
     borderRadius: 8,
+    alignItems: "center",
     justifyContent: "center",
+  },
+  takePhotoContainer: {
+    position: "absolute",
+    borderColor: "#fff",
+    backgroundColor: "tomato",
+    top: 0,
+    left: 0,
   },
   title: {
     paddingLeft: 16,

@@ -1,27 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { Image } from "react-native";
+import { IMGS } from "../assets/constants";
 
 import RegistrationScreen from "./RegistrationScreen";
 import LoginScreen from "./LoginScreen";
-import Home from "./Home";
-import PostsScreen from "./mainScreen/PostsScreen";
+import HomePage from "./Home";
 import CreatePostsScreen from "./mainScreen/CreatePostsScreen";
-import ProfileScreen from "./mainScreen/ProfileScreen";
-import CommentsScreen from "./CommentsScreen";
+import Profile from "./Profile";
 
 const AuthStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-const goPosts = require("../assets/images_navigation/goPosts.jpg");
-const addPost = require("../assets/images_navigation/createPost.png");
-const goProfile = require("../assets/images_navigation/goProfile.png");
-const comment = require("../assets/images_navigation/comment.png");
-const deletePost = require("../images/delete.png");
-const logout = require("../assets/images_navigation/logout.png");
+// const HomeStack = createStackNavigator();
 
 const useRoute = (isAuth) => {
   if (!isAuth) {
@@ -46,22 +40,26 @@ const useRoute = (isAuth) => {
   }
   return (
     <MainTab.Navigator
-      tabBarOptions={{ showLabel: false, headerBackVisible: true }}
+      screenOptions={{ tabBarShowLabel: false, headerBackVisible: true }}
     >
       <MainTab.Screen
+        name="Публикации"
+        component={HomePage}
         options={{
+          headerShown: true,
           tabBarIcon: ({ focused, size, color }) => (
-            <Image source={goPosts} size={24} />
+            <Image source={IMGS.goPostsTabBar} size={24} />
           ),
         }}
-        name="Публикации"
-        component={PostsScreen}
       />
       <MainTab.Screen
         options={{
           headerShown: true,
           tabBarIcon: ({ focused, size, color }) => (
-            <Image style={{ width: 70, height: 40 }} source={addPost} />
+            <Image
+              style={{ width: 70, height: 40 }}
+              source={IMGS.createPostTabBar}
+            />
           ),
         }}
         name="Создать публикацию"
@@ -69,20 +67,19 @@ const useRoute = (isAuth) => {
       />
       <MainTab.Screen
         options={{
-          headerShown: true,
-
+          headerShown: false,
           tabBarIcon: ({ focused, size, color }) => (
-            <Image source={goProfile} size={24} />
+            <Image size={24} source={IMGS.goProfileTabBar} />
           ),
         }}
-        name="Profile"
-        component={ProfileScreen}
+        name="Profile page"
+        component={Profile}
       />
     </MainTab.Navigator>
   );
 };
 
 export default function Navigate() {
-  const routing = useRoute(null);
+  const routing = useRoute({});
   return <NavigationContainer>{routing}</NavigationContainer>;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { COLORS, IMGS } from "../../assets/constants";
 import {
@@ -9,10 +9,27 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
-  Button,
 } from "react-native";
 
 export default function ProfileScreen({ navigation }) {
+  const [clicks, setClicks] = useState(0);
+  const [result, setResult] = useState(0);
+
+  const incr = () => {
+    setClicks((p) => p + 1);
+    // setResult(0);
+  };
+
+  useEffect(() => {
+    if (clicks) {
+      setResult(clicks);
+    }
+  }, [clicks]);
+  const makeComment = async () => {
+    console.log(`navigation`, navigation);
+    navigation.navigate("CommentsScreen");
+  };
+
   return (
     <ImageBackground style={styles.image} source={IMGS.bgImg}>
       <ScrollView>
@@ -29,74 +46,105 @@ export default function ProfileScreen({ navigation }) {
             <Text style={styles.formTitle}>Natali Romanova</Text>
           </View>
           <View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("PostsScreen")}
-            >
-              {/* 1 ====== */}
-              <View style={styles.postWrapper}>
+            {/* 1 ====== */}
+            <View style={styles.postWrapper}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CreatePostsScreen")}
+              >
                 <Image source={IMGS.forestPostImg} />
-                <Text style={styles.postName}>Лес</Text>
-              </View>
-              <View style={styles.descriptiontWrapper}>
+              </TouchableOpacity>
+              <Text style={styles.postName}>Лес</Text>
+            </View>
+            <View style={styles.descriptiontWrapper}>
+              <TouchableOpacity onPress={makeComment}>
                 <Image
                   style={{ marginRight: 9 }}
                   size={18}
                   source={IMGS.commentIcon}
                 />
-                <Text style={styles.textComment}>8</Text>
+              </TouchableOpacity>
+
+              <Text style={styles.textComment}>8</Text>
+              <TouchableOpacity onPress={incr}>
                 <Image
                   style={{ marginRight: 6 }}
                   size={24}
                   source={IMGS.likeIcon}
                 />
-                <Text style={styles.textLike}>153</Text>
-                <Image source={IMGS.mapPinIcon} />
+              </TouchableOpacity>
+
+              <Text style={styles.textLike}>{result}</Text>
+
+              <Image source={IMGS.mapPinIcon} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MapScreen")}
+              >
                 <Text style={styles.location}>Ukraine</Text>
-              </View>
-              {/* 2 ==== */}
-              <View style={styles.postWrapper}>
+              </TouchableOpacity>
+            </View>
+            {/* 2 ==== */}
+            <View style={styles.postWrapper}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CreatePostsScreen")}
+              >
                 <Image source={IMGS.sunsetPostImg} />
-                <Text style={styles.postName}>Закат на Черном море</Text>
-              </View>
-              <View style={styles.descriptiontWrapper}>
+              </TouchableOpacity>
+              <Text style={styles.postName}>Закат на Черном море</Text>
+            </View>
+            <View style={styles.descriptiontWrapper}>
+              <TouchableOpacity onPress={makeComment}>
                 <Image
                   style={{ marginRight: 9 }}
                   size={18}
                   source={IMGS.commentIcon}
                 />
-                <Text style={styles.textComment}>3</Text>
-                <Image
-                  style={{ marginRight: 6 }}
-                  size={24}
-                  source={IMGS.likeIcon}
-                />
-                <Text style={styles.textLike}>200</Text>
-                <Image source={IMGS.mapPinIcon} />
+              </TouchableOpacity>
+              <Text style={styles.textComment}>3</Text>
+              <Image
+                style={{ marginRight: 6 }}
+                size={24}
+                source={IMGS.likeIcon}
+              />
+              <Text style={styles.textLike}>200</Text>
+              <Image source={IMGS.mapPinIcon} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MapScreen")}
+              >
                 <Text style={styles.location}>Ukraine</Text>
-              </View>
-              {/* 3 ===== */}
-              <View style={styles.postWrapper}>
+              </TouchableOpacity>
+            </View>
+            {/* 3 ===== */}
+            <View style={styles.postWrapper}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("CreatePostsScreen")}
+              >
                 <Image source={IMGS.oldHousePostImg} />
-                <Text style={styles.postName}>Старый домик в Венеции</Text>
-              </View>
-              <View style={styles.descriptiontWrapper}>
+              </TouchableOpacity>
+              <Text style={styles.postName}>Старый домик в Венеции</Text>
+            </View>
+            <View style={styles.descriptiontWrapper}>
+              <TouchableOpacity onPress={makeComment}>
                 <Image
                   style={{ marginRight: 9 }}
                   size={18}
                   source={IMGS.commentIcon}
                 />
-                <Text style={styles.textComment}>50</Text>
-                <Image
-                  style={{ marginRight: 6 }}
-                  size={24}
-                  source={IMGS.likeIcon}
-                />
-                <Text style={styles.textLike}>200</Text>
-                <Image source={IMGS.mapPinIcon} />
-                <Text style={styles.location}>Ukraine</Text>
-              </View>
-              {/* ===== */}
-            </TouchableOpacity>
+              </TouchableOpacity>
+              <Text style={styles.textComment}>50</Text>
+              <Image
+                style={{ marginRight: 6 }}
+                size={24}
+                source={IMGS.likeIcon}
+              />
+              <Text style={styles.textLike}>200</Text>
+              <Image source={IMGS.mapPinIcon} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate("MapScreen")}
+              >
+                <Text style={styles.location}>Italy</Text>
+              </TouchableOpacity>
+            </View>
+            {/* ===== */}
           </View>
         </View>
       </ScrollView>

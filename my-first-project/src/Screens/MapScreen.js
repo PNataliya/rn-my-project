@@ -5,8 +5,8 @@ import { StyleSheet, View, Button } from "react-native";
 
 export default function MapScreen() {
   const [mapRegion, setMapRegion] = useState({
-    latitude: 37.78825,
-    longitude: -122.4324,
+    latitude: 50.452251,
+    longitude: 30.515259,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   });
@@ -33,8 +33,21 @@ export default function MapScreen() {
   return (
     <View style={styles.container}>
       <View>
-        <MapView style={styles.map} refion={mapRegion}>
-          <Marker coordinate={mapRegion} title="Marker" />
+        <MapView
+          style={styles.map}
+          region={mapRegion}
+          mapType="standard"
+          minZoomLevel={7}
+          showsUserLocation={true}
+        >
+          {mapRegion && (
+            <Marker
+              coordinate={mapRegion}
+              title="I am here"
+              // coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+              description="Hello"
+            />
+          )}
         </MapView>
       </View>
       <Button title="Get Location" onPress={userLocation} />

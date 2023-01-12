@@ -1,14 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useCallback } from "react";
 import {
-  StyleSheet,
   SafeAreaView,
-  Text,
-  View,
-  ImageBackground,
-  TextInput,
-  Button,
-  TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
   Keyboard,
@@ -46,9 +39,9 @@ export default function App() {
           style={{ flex: 1 }}
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
-          {/* <Navigate /> */}
+          <Navigate />
           {/* <MapScreen /> */}
-          <CommentsScreen />
+          {/* <CommentsScreen /> */}
         </KeyboardAvoidingView>
 
         <StatusBar style="auto" />
