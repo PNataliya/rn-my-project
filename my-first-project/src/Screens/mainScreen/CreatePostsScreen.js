@@ -20,6 +20,7 @@ const initialState = {
 export default function CreatePostsScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
+  console.log(`state`, state);
   const [camera, setCamera] = useState(null);
   const [photo, setPhoto] = useState(null);
 
@@ -33,7 +34,7 @@ export default function CreatePostsScreen({ navigation }) {
 
   const sendPhoto = async () => {
     console.log(`navigation`, navigation);
-    navigation.navigate("PostsScreen", { photo });
+    navigation.navigate("Публикации", { photo });
   };
 
   const keyboardHide = () => {

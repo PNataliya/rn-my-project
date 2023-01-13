@@ -44,7 +44,6 @@ export default function MapScreen() {
             <Marker
               coordinate={mapRegion}
               title="I am here"
-              // coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
               description="Hello"
             />
           )}

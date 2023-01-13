@@ -13,8 +13,8 @@ import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
 import Navigate from "./src/Screens/navigate";
-import MapScreen from "./src/Screens/MapScreen";
-import CommentsScreen from "./src/Screens/CommentsScreen";
+import MapScreen from "./src/Screens/nestedScreens/MapScreen";
+import CommentsScreen from "./src/Screens/nestedScreens/CommentsScreen";
 
 export default function App() {
   const [fontsLoaded] = useFonts({

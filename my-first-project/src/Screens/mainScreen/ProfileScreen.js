@@ -27,7 +27,7 @@ export default function ProfileScreen({ navigation }) {
   }, [clicks]);
   const makeComment = async () => {
     console.log(`navigation`, navigation);
-    navigation.navigate("CommentsScreen");
+    navigation.navigate("Комментарии");
   };
 
   return (
@@ -38,7 +38,7 @@ export default function ProfileScreen({ navigation }) {
             <Image source={IMGS.avatar} />
           </View>
           <Image style={styles.deletePhoto} source={IMGS.deletePhotoIcon} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <Image style={styles.logout} size={24} source={IMGS.logoutIcon} />
           </TouchableOpacity>
 
@@ -49,7 +49,7 @@ export default function ProfileScreen({ navigation }) {
             {/* 1 ====== */}
             <View style={styles.postWrapper}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("CreatePostsScreen")}
+                onPress={() => navigation.navigate("Создать публикацию")}
               >
                 <Image source={IMGS.forestPostImg} />
               </TouchableOpacity>
@@ -76,16 +76,14 @@ export default function ProfileScreen({ navigation }) {
               <Text style={styles.textLike}>{result}</Text>
 
               <Image source={IMGS.mapPinIcon} />
-              <TouchableOpacity
-                onPress={() => navigation.navigate("MapScreen")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("MapPin")}>
                 <Text style={styles.location}>Ukraine</Text>
               </TouchableOpacity>
             </View>
             {/* 2 ==== */}
             <View style={styles.postWrapper}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("CreatePostsScreen")}
+                onPress={() => navigation.navigate("Создать публикацию")}
               >
                 <Image source={IMGS.sunsetPostImg} />
               </TouchableOpacity>
@@ -107,16 +105,14 @@ export default function ProfileScreen({ navigation }) {
               />
               <Text style={styles.textLike}>200</Text>
               <Image source={IMGS.mapPinIcon} />
-              <TouchableOpacity
-                onPress={() => navigation.navigate("MapScreen")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("MapPin")}>
                 <Text style={styles.location}>Ukraine</Text>
               </TouchableOpacity>
             </View>
             {/* 3 ===== */}
             <View style={styles.postWrapper}>
               <TouchableOpacity
-                onPress={() => navigation.navigate("CreatePostsScreen")}
+                onPress={() => navigation.navigate("Создать публикацию")}
               >
                 <Image source={IMGS.oldHousePostImg} />
               </TouchableOpacity>
@@ -138,9 +134,7 @@ export default function ProfileScreen({ navigation }) {
               />
               <Text style={styles.textLike}>200</Text>
               <Image source={IMGS.mapPinIcon} />
-              <TouchableOpacity
-                onPress={() => navigation.navigate("MapScreen")}
-              >
+              <TouchableOpacity onPress={() => navigation.navigate("MapPin")}>
                 <Text style={styles.location}>Italy</Text>
               </TouchableOpacity>
             </View>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { COLORS, IMGS } from "../assets/constants";
+import { COLORS, IMGS } from "../../assets/constants";
 import {
   StyleSheet,
   Text,

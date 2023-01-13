@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { COLORS } from "../assets/constants";
+import { COLORS, IMGS } from "../../assets/constants";
 import { TextInput } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useTogglePasswordVisibility } from "../hooks/useTogglePasswordVisibility";
+import { useTogglePasswordVisibility } from "../../hooks/useTogglePasswordVisibility";
 import {
   StyleSheet,
   Text,
@@ -11,22 +11,26 @@ import {
   TouchableOpacity,
   Platform,
   Keyboard,
+  Image,
   Pressable,
 } from "react-native";
 
 const initialState = {
+  login: "",
   email: "",
   password: "",
 };
 
-const image = require("../images/Photo-BG.jpg");
-
-export default function LoginScreen({ navigation }) {
+export default function RegistrationScreen({ navigation }) {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
   const { passwordVisibility, rightIcon, handlePasswordVisibility } =
     useTogglePasswordVisibility();
   const [password, setPassword] = useState("");
+
+  // const loadScene = () => {
+  //   navigation.navigate("LoginScreen");
+  // };
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -36,19 +40,37 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <ImageBackground style={styles.image} source={image}>
+    <ImageBackground style={styles.image} source={IMGS.bgImg}>
       <View style={styles.formContainer}>
         <View
           style={{
             ...styles.form,
-            marginBottom: isShowKeyboard ? -30 : 140,
+            marginBottom: isShowKeyboard ? -50 : 78,
           }}
         >
-          <View>
-            <Text style={styles.formTitle}>Войти</Text>
+          <View style={styles.imageContainer}>
+            <Image source={IMGS.avatar} />
           </View>
-
           <View>
+            <Text style={styles.formTitle}>Регистрация</Text>
+          </View>
+          <View>
+            <TextInput
+              style={styles.input}
+              textAlign={"start"}
+              mode="outlined"
+              outlineColor="#E8E8E8"
+              activeOutlineColor={"#FF6C00"}
+              onFocus={() => setIsShowKeyboard(true)}
+              value={state.login}
+              placeholder="Логин"
+              placeholderTextColor="#BDBDBD"
+              onChangeText={(value) =>
+                setState((prevState) => ({ ...prevState, login: value }))
+              }
+            />
+          </View>
+          <View style={{ marginTop: 16 }}>
             <TextInput
               style={styles.input}
               textAlign={"start"}
@@ -72,6 +94,7 @@ export default function LoginScreen({ navigation }) {
               mode="outlined"
               outlineColor="#E8E8E8"
               activeOutlineColor={"#FF6C00"}
+              // secureTextEntry={true}
               secureTextEntry={passwordVisibility}
               onFocus={() => setIsShowKeyboard(true)}
               value={state.password}
@@ -95,22 +118,18 @@ export default function LoginScreen({ navigation }) {
               />
             </Pressable>
           </View>
-          <TouchableOpacity
-            style={styles.btn}
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate("Home")}
-          >
+          <TouchableOpacity style={styles.btn} activeOpacity={0.8}>
             <Text style={styles.btnTitle} onPress={keyboardHide}>
-              Войти
+              Зарегистрироваться
             </Text>
           </TouchableOpacity>
           <View style={styles.boxQuestion}>
-            <Text style={styles.paragraph}>Нет аккаунта?</Text>
+            <Text style={styles.paragraph}>Уже есть аккаунт? </Text>
             <Text
               style={styles.paragraphLink}
-              onPress={() => navigation.navigate("Registration")}
+              onPress={() => navigation.navigate("Login")}
             >
-              Зарегистрироваться
+              Войти
             </Text>
           </View>
         </View>
@@ -128,14 +147,23 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   formContainer: {
+    position: "relative",
     width: "100%",
-    // height: 549,
     backgroundColor: COLORS.bgColor,
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
+  imageContainer: {
+    position: "absolute",
+    backgroundColor: COLORS.bgColor,
+    width: 120,
+    height: 120,
+    borderRadius: 16,
+    top: -60,
+    left: 120,
+  },
   formTitle: {
-    marginTop: 32,
+    marginTop: 92,
     marginBottom: 33,
     fontFamily: "Roboto-Regular",
     fontWeight: 500,
@@ -175,12 +203,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...Platform.select({
       ios: {
-        backgroundColor: COLORS.buttonBgColorActive,
-        borderColor: COLORS.buttonBgColorActive,
+        backgroundColor: COLORS.borderColorActive,
+        borderColor: COLORS.borderColorActive,
       },
       android: {
-        backgroundColor: COLORS.buttonBgColorActive,
-        borderColor: COLORS.buttonBgColorActive,
+        backgroundColor: COLORS.borderColorActive,
+        borderColor: COLORS.borderColorActive,
       },
     }),
   },

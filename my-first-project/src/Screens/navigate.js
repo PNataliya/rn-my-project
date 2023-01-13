@@ -6,9 +6,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image } from "react-native";
 import { IMGS } from "../assets/constants";
 
-import RegistrationScreen from "./RegistrationScreen";
-import LoginScreen from "./LoginScreen";
-import HomePage from "./Home";
+import RegistrationScreen from "./authScreens/RegistrationScreen";
+import Registered from "./Registered";
+import LoginScreen from "./authScreens/LoginScreen";
+import PostsScreen from "./mainScreen/PostsScreen";
 import CreatePostsScreen from "./mainScreen/CreatePostsScreen";
 import Profile from "./Profile";
 
@@ -20,7 +21,7 @@ const MainTab = createBottomTabNavigator();
 const useRoute = (isAuth) => {
   if (!isAuth) {
     return (
-      <AuthStack.Navigator initialRouteName={RegistrationScreen}>
+      <AuthStack.Navigator>
         <AuthStack.Screen
           name="Registration"
           component={RegistrationScreen}
@@ -44,7 +45,7 @@ const useRoute = (isAuth) => {
     >
       <MainTab.Screen
         name="Публикации"
-        component={HomePage}
+        component={PostsScreen}
         options={{
           headerShown: true,
           tabBarIcon: ({ focused, size, color }) => (
